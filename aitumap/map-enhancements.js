@@ -48,7 +48,7 @@
 
   const directory = document.createElement('aside');
   directory.className = 'map-directory';
-  directory.innerHTML = `<div class="directory-head"><strong>Rooms on this floor</strong><button type="button" class="directory-toggle" aria-expanded="false">Show list</button></div><p id="directoryStatus" class="directory-status" aria-live="polite">Search any room number — suffixes such as L, P and K are optional.</p><div class="room-list" hidden></div>`;
+  directory.innerHTML = `<div class="directory-head"><strong>Rooms on this floor</strong><button type="button" class="directory-toggle" aria-expanded="false">Show list</button></div><p id="directoryStatus" class="directory-status" aria-live="polite">Search any room number - suffixes such as L, P and K are optional.</p><div class="room-list" hidden></div>`;
   shell.append(directory);
   const directoryStatus = directory.querySelector('#directoryStatus');
   const roomList = directory.querySelector('.room-list');

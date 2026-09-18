@@ -28,7 +28,7 @@ python3 -m http.server 8000
 
 ## Структура
 
-- `index.html`, `style.css`, `script.js` — расписание.
-- `aitumap/index.html`, `map.css`, `map.js` — карта.
-- `aitumap/plans.js` — встроенные SVG и индекс кабинетов.
-- `aitumap/plans/` — исходные SVG-планы.
+- `index.html`, `style.css`, `script.js` - расписание.
+- `aitumap/index.html`, `map.css`, `map.js` - карта.
+- `aitumap/plans.js` - встроенные SVG и индекс кабинетов.
+- `aitumap/plans/` - исходные SVG-планы.

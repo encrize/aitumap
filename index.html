@@ -1,29 +1,60 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Расписание группы CS-2604 и интерактивная карта кампуса AITU">
+  <meta
+    name="description"
+    content="CS-2604 group schedule and interactive AITU campus map"
+  >
+
   <title>CS-2604 · Student Hub</title>
+
   <link rel="stylesheet" href="style.css?v=6">
   <script src="script.js?v=6" defer></script>
 </head>
+
 <body>
-  <a class="skip-link" href="#schedule">К расписанию</a>
+  <a class="skip-link" href="#schedule">Skip to schedule</a>
+
   <header class="topbar">
     <div class="shell topbar__inner">
-      <a class="brand" href="./" aria-label="Student Hub, главная">
+      <a class="brand" href="./" aria-label="Student Hub, home">
         <span class="brand__mark" aria-hidden="true">C</span>
-        <span><strong>CS-2604</strong><small>Student Hub</small></span>
+
+        <span>
+          <strong>CS-2604</strong>
+          <small>Student Hub</small>
+        </span>
       </a>
-      <nav class="top-actions" aria-label="Быстрые действия">
-        <button id="notifyButton" class="icon-action" type="button" aria-label="Настроить напоминания" title="Напоминания">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+
+      <nav class="top-actions" aria-label="Quick actions">
+        <button
+          id="notifyButton"
+          class="icon-action"
+          type="button"
+          aria-label="Configure reminders"
+          title="Reminders"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
+          </svg>
         </button>
-        <button id="openCampusMap" class="button button--primary" type="button">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Zm0 0V3m6 18V6"/></svg>
-          <span>Карта кампуса</span>
+
+        <button
+          id="openCampusMap"
+          class="button button--primary"
+          type="button"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Zm0 0V3m6 18V6"/>
+          </svg>
+
+          <span>Campus Map</span>
         </button>
       </nav>
     </div>
@@ -32,41 +63,124 @@
   <main class="shell main">
     <section class="intro" aria-labelledby="heroTitle">
       <div>
-        <p id="todayLabel" class="eyebrow">РАСПИСАНИЕ</p>
-        <h1 id="heroTitle">Учебный день</h1>
+        <p id="todayLabel" class="eyebrow">SCHEDULE</p>
+        <h1 id="heroTitle">Study Day</h1>
         <p id="dateLabel" class="date-label"></p>
       </div>
-      <div id="statusCard" class="status-card" aria-live="polite">
-        <span class="status-card__dot" aria-hidden="true"></span>
-        <span><small>СТАТУС</small><strong id="statusText">Загрузка…</strong></span>
+
+      <div
+        id="statusCard"
+        class="status-card"
+        aria-live="polite"
+      >
+        <span
+          class="status-card__dot"
+          aria-hidden="true"
+        ></span>
+
+        <span>
+          <small>STATUS</small>
+          <strong id="statusText">Loading…</strong>
+        </span>
       </div>
     </section>
 
-    <section class="schedule-card" aria-labelledby="dayName">
-      <nav class="day-tabs" id="dayTabs" aria-label="Выберите день недели"></nav>
+    <section
+      class="schedule-card"
+      aria-labelledby="dayName"
+    >
+      <nav
+        class="day-tabs"
+        id="dayTabs"
+        aria-label="Select a day of the week"
+      ></nav>
+
       <header class="schedule-head">
-        <div><p class="eyebrow">ЗАНЯТИЯ</p><h2 id="dayName">Понедельник</h2></div>
-        <span id="lessonCount" class="count-badge"></span>
+        <div>
+          <p class="eyebrow">CLASSES</p>
+          <h2 id="dayName">Monday</h2>
+        </div>
+
+        <span
+          id="lessonCount"
+          class="count-badge"
+        ></span>
       </header>
-      <div id="schedule" class="schedule" aria-live="polite"></div>
+
+      <div
+        id="schedule"
+        class="schedule"
+        aria-live="polite"
+      ></div>
     </section>
-    <p class="hint">Используйте ← и →, чтобы переключать дни. Нажмите на кабинет, чтобы найти его на карте.</p>
   </main>
 
-  <dialog id="mapDialog" class="map-dialog" aria-labelledby="mapTitle">
+  <dialog
+    id="mapDialog"
+    class="map-dialog"
+    aria-labelledby="mapTitle"
+  >
     <header class="map-dialog__bar">
       <div class="map-dialog__title">
-        <span class="map-dialog__icon" aria-hidden="true">A</span>
-        <span><small id="mapContext">КАРТА КАМПУСА</small><strong id="mapTitle">AITU Map</strong></span>
+        <span
+          class="map-dialog__icon"
+          aria-hidden="true"
+        >
+          A
+        </span>
+
+        <span>
+          <small id="mapContext">CAMPUS MAP</small>
+          <strong id="mapTitle">AITU Map</strong>
+        </span>
       </div>
+
       <div class="map-dialog__actions">
-        <a id="openMapTab" class="dialog-action" href="aitumap/index.html?v=6" target="_blank" rel="noopener" aria-label="Открыть карту в новой вкладке">↗</a>
-        <button id="expandMap" class="dialog-action desktop-only" type="button" aria-label="Развернуть карту">⛶</button>
-        <button id="closeMap" class="dialog-action" type="button" aria-label="Закрыть карту">×</button>
+        <a
+          id="openMapTab"
+          class="dialog-action"
+          href="aitumap/index.html?v=6"
+          target="_blank"
+          rel="noopener"
+          aria-label="Open the map in a new tab"
+        >
+          ↗
+        </a>
+
+        <button
+          id="expandMap"
+          class="dialog-action desktop-only"
+          type="button"
+          aria-label="Expand the map"
+        >
+          ⛶
+        </button>
+
+        <button
+          id="closeMap"
+          class="dialog-action"
+          type="button"
+          aria-label="Close the map"
+        >
+          ×
+        </button>
       </div>
     </header>
-    <iframe id="mapFrame" class="campus-map" title="Интерактивная карта кампуса AITU" data-src="aitumap/index.html?v=6" loading="lazy"></iframe>
+
+    <iframe
+      id="mapFrame"
+      class="campus-map"
+      title="Interactive AITU campus map"
+      data-src="aitumap/index.html?v=6"
+      loading="lazy"
+    ></iframe>
   </dialog>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
 </body>
 </html>
