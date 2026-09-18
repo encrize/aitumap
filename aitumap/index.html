@@ -1,44 +1,43 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#236fd3" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Интерактивная карта кампуса AITU с поиском кабинетов">
   <title>AITU Campus Map</title>
-  <link rel="stylesheet" href="map.css?v=5-light" />
+  <link rel="stylesheet" href="map.css?v=6">
+  <script src="plans.js?v=6" defer></script>
+  <script src="map.js?v=6" defer></script>
 </head>
 <body>
   <main id="root" class="map-app">
     <header class="toolbar">
-      <div class="brand" aria-label="AITU Campus Map">
-        <span class="brand-mark">A</span>
-        <span class="brand-copy"><strong>AITU Map</strong><span>Навигация по кампусу</span></span>
-      </div>
+      <a class="map-brand" href="../index.html" aria-label="Вернуться к расписанию"><span aria-hidden="true">A</span><strong>AITU Map</strong></a>
       <div class="search-wrap">
-        <label class="search-box" for="roomSearch"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Найти кабинет</span><input id="roomSearch" type="search" placeholder="Кабинет, например C1.3.323K" autocomplete="off" spellcheck="false" /><button id="clearSearch" class="clear-search" type="button" aria-label="Очистить поиск">×</button></label>
+        <label class="search-box" for="roomSearch">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <span class="sr-only">Найти кабинет</span>
+          <input id="roomSearch" type="search" placeholder="Найти кабинет, например 323K" autocomplete="off" spellcheck="false">
+          <button id="clearSearch" class="clear-search" type="button" aria-label="Очистить поиск">×</button>
+        </label>
         <div id="suggestions" class="suggestions" role="listbox" aria-label="Результаты поиска"></div>
       </div>
+      <p class="shortcut-hint">Колесо — масштаб · перетаскивание — обзор</p>
     </header>
     <section class="workspace" aria-label="Интерактивная карта кампуса">
-      <div id="canvas" class="map-canvas">
-        <div id="transformLayer" class="transform-layer"><div id="plans" class="plans single"></div></div>
-      </div>
+      <div id="canvas" class="map-canvas"><div id="transformLayer" class="transform-layer"><div id="plans" class="plans"></div></div></div>
       <nav id="modePanel" class="mode-panel" aria-label="Корпус">
-        <button class="seg-btn active" type="button" data-block="all">Весь этаж</button>
-        <button class="seg-btn" type="button" data-block="C1.1">C1.1</button>
-        <button class="seg-btn" type="button" data-block="C1.2">C1.2</button>
-        <button class="seg-btn" type="button" data-block="C1.3">C1.3</button>
+        <button class="seg-btn active" type="button" data-block="all">Все</button><button class="seg-btn" type="button" data-block="C1.1">C1.1</button><button class="seg-btn" type="button" data-block="C1.2">C1.2</button><button class="seg-btn" type="button" data-block="C1.3">C1.3</button>
       </nav>
       <nav id="floorPanel" class="floor-panel" aria-label="Этаж">
-        <button class="floor-btn" type="button" data-floor="3" aria-label="3 этаж">3</button><button class="floor-btn" type="button" data-floor="2" aria-label="2 этаж">2</button><button class="floor-btn active" type="button" data-floor="1" aria-label="1 этаж">1</button>
+        <span>Этаж</span><button class="floor-btn active" type="button" data-floor="1">1</button><button class="floor-btn" type="button" data-floor="2">2</button><button class="floor-btn" type="button" data-floor="3">3</button>
       </nav>
       <div class="zoom-panel" aria-label="Масштаб">
-        <button id="zoomOut" class="zoom-btn" type="button" aria-label="Уменьшить">−</button><span id="zoomValue" class="zoom-value">100%</span><button id="zoomIn" class="zoom-btn" type="button" aria-label="Увеличить">+</button><button id="resetView" class="zoom-btn" type="button" aria-label="Сбросить вид">↺</button>
+        <button id="zoomOut" class="zoom-btn" type="button" aria-label="Уменьшить">−</button><span id="zoomValue">100%</span><button id="zoomIn" class="zoom-btn" type="button" aria-label="Увеличить">+</button><button id="resetView" class="zoom-btn" type="button" aria-label="Сбросить вид">↺</button>
       </div>
-      <div class="status-panel" aria-live="polite"><span class="status-dot"></span><span class="status-copy"><strong id="statusTitle">Весь этаж · 1 этаж</strong><span id="statusText">Все три корпуса показаны одновременно</span></span></div>
-      <div id="mobileRoomCard" class="mobile-room-card" aria-live="polite"></div>
+      <div class="status-panel" aria-live="polite"><span class="status-dot"></span><span><strong id="statusTitle">Все корпуса · 1 этаж</strong><small id="statusText">Загрузка планов…</small></span></div>
     </section>
   </main>
-  <script src="plans.js?v=5-light"></script><script src="map.js?v=5-light"></script>
 </body>
 </html>
